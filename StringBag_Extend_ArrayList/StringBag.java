@@ -1,3 +1,5 @@
+@SuppressWarnings("unchecked")
+
 public class StringBag extends java.util.ArrayList implements SimpleCollection {
 
     // Empty constuct
