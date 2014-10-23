@@ -2,10 +2,7 @@
 
 public class StringBag extends java.util.ArrayList implements SimpleCollection {
 
-    // Empty constuct
-    public StringBag () {
-        super();
-    }
+    // Empty constuct inherited
 
     // Single String construct
     public StringBag (String start) {
@@ -27,20 +24,11 @@ public class StringBag extends java.util.ArrayList implements SimpleCollection {
         return super.add( (String) o );
     }
     
-    /** Removes all of the elements from this collection (optional operation). */
-    public void clear(){
-        super.clear();
-    }
+    // clear inherited
     
-    /** Returns true if this collection contains the specified element. */
-    public boolean contains ( Object o ){
-        return super.contains( o );
-    }
+    // contains inherited
     
-    /** Returns true if this collection contains no elements. */
-    public boolean isEmpty(){
-        return super.isEmpty();
-    }
+    // isEmpty inherited
     
     /** Removes a single instance of the specified element from this collection, if it is present. */
     public boolean remove ( Object o ){
