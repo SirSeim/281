@@ -78,17 +78,12 @@ public class WordSort {
 
 		// Counting and Printing
 		int counter = 1;
-		boolean[] include = new boolean[sortingArray.length];
-		if (include.length > 0) {
-			include[0] = true;
-		}
-		for (int i = 1; i < include.length; i++) {
-			include[i] = !sortingArray[i].equals(sortingArray[i - 1]);
-			if (include[i]) {
+		for (int i = 1; i < sortingArray.length; i++) {
+			if (sortingArray[i].equals(sortingArray[i - 1])) {
+				counter++;
+			} else {
 				System.out.println(sortingArray[i - 1] + " " + counter);
 				counter = 1;
-			} else {
-				counter++;
 			}
 		}
 		System.out.println(sortingArray[sortingArray.length - 1] + " " + counter);
