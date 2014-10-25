@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.lang.Character;
 
 public class WordSort {
 	public static void main (String[] args) {
+		// Setup reader
 		java.io.BufferedReader stdIn = new java.io.BufferedReader ( new java.io.InputStreamReader ( System.in ) );
 		ArrayList <String> lines = new ArrayList<String>();
 		boolean isSensitive = false;
@@ -10,6 +12,7 @@ public class WordSort {
 			isSensitive = true;
 		}
 
+		// Capture System Input
 		String s;
 		try {
 			s = stdIn.readLine();
@@ -25,21 +28,16 @@ public class WordSort {
 			}
 		}
 
-		for (int o = 0; o < lines.size(); o++) {
-			System.out.println("[" + lines.get(o) + "]");
-		}
-
+		// Separate out words
 		ArrayList <String> words = new ArrayList<String>();
 		boolean isDone = false;
 		int start, end, index;
 		boolean isFound;
 		String currentLine;
 		for (int i = 0; i < lines.size(); i++) {
-			System.out.println("Begin");
 			start = 0;
 			end = 0;
 			index = 0;
-			isFound = false;
 			isDone = false;
 			currentLine = lines.get(i);
 			if (currentLine.length() == 0) {
@@ -48,31 +46,51 @@ public class WordSort {
 			while (!isDone) {
 				isFound = Character.isLowerCase(currentLine.charAt(index)) || Character.isUpperCase(currentLine.charAt(index));
 				if (isFound) {
-					System.out.println("Found");
 					end++;
-					index++;
 				} else {
-					System.out.println("!Found");
 					if (start < end - 1) {
-						words.add(currentLine.substring(start, end));
+						if (isSensitive) {
+							words.add(currentLine.substring(start, end));
+						} else {
+							words.add(currentLine.substring(start, end).toUpperCase());
+						}
 					}
-					start = end;
 					end++;
-					index++;
+					start = end;
 				}
-				if (index == currentLine.length() - 1){
-					System.out.println("End of Line");
+				index++;
+				if (index == currentLine.length()){
 					if (start < end - 1) {
-						words.add(currentLine.substring(start, end));
+						if (isSensitive) {
+							words.add(currentLine.substring(start, end));
+						} else {
+							words.add(currentLine.substring(start, end).toUpperCase());
+						}
 					}
 					isDone = true;
 				}
 			}
 		}
 
-		System.out.println();
-		for (int o = 0; o < words.size(); o++) {
-			System.out.println("{" + words.get(o) + "}");
+		// Sorting
+		Object[] sortingArray = words.toArray();
+		Arrays.sort(sortingArray);
+
+		// Counting and Printing
+		int counter = 1;
+		boolean[] include = new boolean[sortingArray.length];
+		if (include.length > 0) {
+			include[0] = true;
 		}
+		for (int i = 1; i < include.length; i++) {
+			include[i] = !sortingArray[i].equals(sortingArray[i - 1]);
+			if (include[i]) {
+				System.out.println(sortingArray[i - 1] + " " + counter);
+				counter = 1;
+			} else {
+				counter++;
+			}
+		}
+		System.out.println(sortingArray[sortingArray.length - 1] + " " + counter);
 	}
 }
