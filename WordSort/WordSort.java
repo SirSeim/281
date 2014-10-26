@@ -48,7 +48,7 @@ public class WordSort {
 				if (isFound) {
 					end++;
 				} else {
-					if (start < end - 1) {
+					if (start <= end - 1) {
 						if (isSensitive) {
 							words.add(currentLine.substring(start, end));
 						} else {
@@ -60,7 +60,7 @@ public class WordSort {
 				}
 				index++;
 				if (index == currentLine.length()){
-					if (start < end - 1) {
+					if (start <= end - 1) {
 						if (isSensitive) {
 							words.add(currentLine.substring(start, end));
 						} else {
