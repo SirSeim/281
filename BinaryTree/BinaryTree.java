@@ -17,17 +17,37 @@ public class BinaryTree<E> implements Collection<E> {
         this.root = o;
         this.left = null;
         this.right = null;
-        this.size = 1;
+        if (this.root != null) {
+            this.size = 1;
+        } else {
+            this.size = 0;
+        }
     }
 
     public BinaryTree (E o, BinaryTree left, BinaryTree right) {
         this.root = o;
         this.left = left;
         this.right = right;
-        this.size = left.size() + right.size() + 1;
+
+        if (this.root != null) {
+            this.size = 1;
+        } else {
+            this.size = 0;
+        }
+
+        if (this.left != null) {
+            this.size += this.left.size();
+        }
+
+        if (this.right != null) {
+            this.size += this.right.size();
+        }
     }
 
     public boolean add (E o) {
+        if (o == null) {
+            return false;
+        }
         try {
             if (this.root == null) {
                 this.root = o;
@@ -50,7 +70,7 @@ public class BinaryTree<E> implements Collection<E> {
     }
 
     public boolean addAll (Collection c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     public void clear () {
@@ -80,11 +100,11 @@ public class BinaryTree<E> implements Collection<E> {
     }
 
     public boolean containsAll (Collection c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     public boolean equals (Object o) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     public boolean isEmpty () {
@@ -92,19 +112,19 @@ public class BinaryTree<E> implements Collection<E> {
     }
 
     public Iterator iterator () {
-        return null;
+        return new PreTreeIterator<E>(this);
     }
 
     public boolean remove (Object o) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     public boolean removeAll (Collection c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     public boolean retainAll (Collection c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     public int size () {
@@ -112,11 +132,31 @@ public class BinaryTree<E> implements Collection<E> {
     }
 
     public Object[] toArray () {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public <T> T[] toArray (T[] a) {
-        return null;
+        throw new UnsupportedOperationException();
+    }
+
+    public E root () {
+        return this.root;
+    }
+
+    public boolean hasLeft () {
+        return this.left != null;
+    }
+
+    public boolean hasRight () {
+        return this.right != null;
+    }
+
+    public BinaryTree left () {
+        return this.left;
+    }
+
+    public BinaryTree right () {
+        return this.right;
     }
 
     public static BinaryTree createFromData (Object rootData, BinaryTree leftSubtree, BinaryTree rightSubtree) {
