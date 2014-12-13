@@ -29,7 +29,11 @@ public class BinaryTree<E> implements Collection<E> {
 
     public boolean add (E o) {
         try {
-            if (this.left != null) {
+            if (this.root == null) {
+                this.root = o;
+                this.size++;
+                return true;
+            } else if (this.left != null) {
                 if (this.left.add(o)) {
                     this.size++;
                     return true;
@@ -104,7 +108,7 @@ public class BinaryTree<E> implements Collection<E> {
     }
 
     public int size () {
-        return 0;
+        return this.size;
     }
 
     public Object[] toArray () {
