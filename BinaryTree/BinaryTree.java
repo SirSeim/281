@@ -1,7 +1,7 @@
 import java.util.*;
 
-public class BinaryTree<E> implements Collection<E> {
-    private E root;
+public class BinaryTree implements Collection {
+    private Object root;
     private BinaryTree left;
     private BinaryTree right;
     private int size;
@@ -13,7 +13,7 @@ public class BinaryTree<E> implements Collection<E> {
         this.size = 0;
     }
 
-    public BinaryTree (E o) {
+    public BinaryTree (Object o) {
         this.root = o;
         this.left = null;
         this.right = null;
@@ -24,7 +24,7 @@ public class BinaryTree<E> implements Collection<E> {
         }
     }
 
-    public BinaryTree (E o, BinaryTree left, BinaryTree right) {
+    public BinaryTree (Object o, BinaryTree left, BinaryTree right) {
         this.root = o;
         this.left = left;
         this.right = right;
@@ -44,7 +44,7 @@ public class BinaryTree<E> implements Collection<E> {
         }
     }
 
-    public boolean add (E o) {
+    public boolean add (Object o) {
         if (o == null) {
             return false;
         }
@@ -112,7 +112,7 @@ public class BinaryTree<E> implements Collection<E> {
     }
 
     public Iterator iterator () {
-        return new PreTreeIterator<E>(this);
+        return new PreTreeIterator(this);
     }
 
     public boolean remove (Object o) {
@@ -135,11 +135,11 @@ public class BinaryTree<E> implements Collection<E> {
         throw new UnsupportedOperationException();
     }
 
-    public <T> T[] toArray (T[] a) {
+    public Object[] toArray (Object[] a) {
         throw new UnsupportedOperationException();
     }
 
-    public E root () {
+    public Object root () {
         return this.root;
     }
 

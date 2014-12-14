@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PreTreeIterator<E> implements Iterator<E> {
+public class PreTreeIterator implements Iterator {
     private BinaryTree tree;
     private Stack<BinaryTree> stack;
     private BinaryTree current;
@@ -22,7 +22,7 @@ public class PreTreeIterator<E> implements Iterator<E> {
         return false;
     }
 
-    public E next () {
+    public Object next () {
         try {
             if (current == null) {
                 this.current = this.tree;
@@ -36,7 +36,7 @@ public class PreTreeIterator<E> implements Iterator<E> {
             if (this.current.hasRight()) {
                 this.stack.push(this.current.right());
             }
-            return (E) this.current.root();
+            return this.current.root();
         } catch (Exception e) {
             return null;
         }
